@@ -1,5 +1,7 @@
 package com.app.databaseretry;
 
+import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +11,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    /*DataBase mMydb;
+    DataBase mMydb;
     EditText mEtFname,mEtLname,mEtMailId,mEtPassword,mEtPhoneNo;
-    Button mBtnSubmit;
+    Button mBtnSubmit,mBtnViewAll;
 
 
     @Override
@@ -26,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
         mEtMailId=(EditText)findViewById(R.id.idEtMailId);
         mEtPassword=(EditText)findViewById(R.id.idEtPassword);
         mEtPhoneNo=(EditText)findViewById(R.id.idEtMobileNo);
-
+        mBtnViewAll=(Button)findViewById(R.id.idBtnShowAllData);
         mBtnSubmit=(Button)findViewById(R.id.idBtnSubmitData);
 
         addDate();
+        viewAll();
 
     }
 
@@ -59,5 +62,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }*/
+    }
+
+    public void viewAll()
+    {
+        mBtnViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor res=mMydb.getAllData();
+                if(res.getCount()==0)
+                {
+                    //Toast.makeText(MainActivity.this, "No Data", Toast.LENGTH_SHORT).show();
+                    //show mes
+                    showMessage("Error","No data found");
+                    return;
+                }
+
+                StringBuffer buffer=new StringBuffer();
+                while (res.moveToNext())
+                {
+                    buffer.append("First Name :"+res.getString(0)+"\n"+ " ");
+                    buffer.append("Lname :"+res.getString(1)+ "\n");
+                    buffer.append("MailId :"+res.getString(2)+ "\n");
+                    buffer.append("Password :"+res.getString(3)+ "\n");
+                    buffer.append("MobNo :"+res.getString(4)+ "\n");
+
+                }
+                //show all data
+                showMessage("Data",buffer.toString());
+            }
+        });
+
+    }
+
+    public void showMessage(String title,String Messages)
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Messages);
+        builder.show();
+
+    }
 }

@@ -2,6 +2,7 @@ package com.app.databaseretry;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -20,12 +21,11 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String mCol4 ="Password";
     public static final String mCol5="Contact_No";
     private static final String CREATE = "create table StudentDetail (Student_FirstName varchar(20),Student_LastName varchar(20) ,MailId varchar(30) primary key,Password varchar(20), Contact_No varchar(10));";
-
+    SQLiteDatabase sd;
     public DataBase(Context context) {
         super(context, mDatabase_Name, null,1);
 
     }
-
 
 
 
@@ -47,7 +47,9 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
 
-    /*public boolean insertData(String fName,String lName,String mailId,String password,String mobileNo)
+
+
+    public boolean insertData(String fName,String lName,String mailId,String password,String mobileNo)
     {
         SQLiteDatabase db=this.getReadableDatabase();
         ContentValues contentValues=new ContentValues();
@@ -66,5 +68,12 @@ public class DataBase extends SQLiteOpenHelper {
             return true;
 
 
-    }*/
+    }
+
+    public Cursor getAllData()
+    {
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor res =db.rawQuery("select * from "+mTable_Name,null);
+        return res;
+    }
 }

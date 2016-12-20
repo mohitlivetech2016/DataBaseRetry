@@ -64,5 +64,14 @@
             android:id="@+id/idBtnSubmitData"
 
             />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/idBtnShowAllData"
+
+            />
+
+
     </LinearLayout>
 </RelativeLayout>
