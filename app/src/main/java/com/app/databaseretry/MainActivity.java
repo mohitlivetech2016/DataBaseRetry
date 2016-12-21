@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 mobileNo=mEtPhoneNo.getText().toString();
                 boolean isInserted= mMydb.insertData(fName,lName,mailId,pass,mobileNo);
 
-
                 if(isInserted == true)
                 {
                     Toast.makeText(MainActivity.this, "SuccessFull Inserted", Toast.LENGTH_SHORT).show();
@@ -168,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
                 String mailId;
                 mailId=mEtMailId.getText().toString();
 
-                boolean isDeleted=mMydb.deleteData(mailId);
+                Integer isDeleted=mMydb.deleteData(mailId);
 
-                if(isDeleted==true)
+                if(isDeleted >0)
                 {
                     Toast.makeText(MainActivity.this, "Row Deleted Successfully", Toast.LENGTH_SHORT).show();
                 }
