@@ -9,52 +9,67 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.app.databaseretry.MainActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="FirstName"
             android:id="@+id/idEtFirstName"
+            android:layout_gravity="center"
 
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Last Name"
             android:id="@+id/idEtLastName"
+            android:layout_gravity="center"
 
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="MailId"
             android:id="@+id/idEtMailId"
+            android:layout_gravity="center"
 
 
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="**Mail ID is Unique and Primary Key for table"
+            android:textSize="10sp"
+            android:textStyle="bold"
             />
 
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Password"
             android:id="@+id/idEtPassword"
-
+            android:layout_gravity="center"
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Mobile  No"
             android:id="@+id/idEtMobileNo"
-
+            android:layout_gravity="center"
             />
 
         <Button
@@ -62,7 +77,41 @@
             android:layout_height="wrap_content"
             android:text="Submit Data"
             android:id="@+id/idBtnSubmitData"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/idBtnShowAllData"
+            android:layout_gravity="center"
+            android:text="Show All Data"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Data"
+            android:id="@+id/idBtnUpdateData"
+            android:layout_gravity="center"
 
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Data"
+            android:id="@+id/idBtnDeleteData"
+
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/idBtnReset"
+            android:text="Reset"
+
+            />
+
+
     </LinearLayout>
+</ScrollView>
 </RelativeLayout>
