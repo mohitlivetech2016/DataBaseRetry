@@ -13,8 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     DataBase mMydb;
     EditText mEtFname,mEtLname,mEtMailId,mEtPassword,mEtPhoneNo;
-    Button mBtnSubmit,mBtnViewAll;
-
+    Button mBtnSubmit,mBtnViewAll,mBtnUpdateData,mBtnResetData,mBtnDeleteData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +29,33 @@ public class MainActivity extends AppCompatActivity {
         mEtPhoneNo=(EditText)findViewById(R.id.idEtMobileNo);
         mBtnViewAll=(Button)findViewById(R.id.idBtnShowAllData);
         mBtnSubmit=(Button)findViewById(R.id.idBtnSubmitData);
-
+        mBtnUpdateData=(Button)findViewById(R.id.idBtnUpdateData);
+        mBtnDeleteData=(Button)findViewById(R.id.idBtnDeleteData);
+        mBtnResetData=(Button)findViewById(R.id.idBtnReset);
         addDate();
         viewAll();
+        updateData();
+        deletedData();
+        resetValue();
+
+    }
+
+    private void resetValue() {
+
+        mBtnResetData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mEtFname.setText("");
+                mEtLname.setText("");
+                mEtMailId.setText("");
+                mEtPassword.setText("");
+                mEtPhoneNo.setText("");
+
+
+            }
+        });
+
 
     }
 
@@ -104,4 +127,60 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
 
     }
+
+
+    public void updateData()
+    {
+
+        mBtnUpdateData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fName,lName,mailId,pass,mobileNo;
+                fName=mEtFname.getText().toString();
+                lName=mEtLname.getText().toString();
+                mailId=mEtMailId.getText().toString();
+                pass=mEtPassword.getText().toString();
+                mobileNo=mEtPhoneNo.getText().toString();
+                boolean isUpdated= mMydb.updateMessages(fName,lName,mailId,pass,mobileNo);
+
+                if(isUpdated==true)
+                {
+
+                    Toast.makeText(MainActivity.this, "Update Successfully", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+    }
+
+    public void deletedData()
+    {
+        mBtnDeleteData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mailId;
+                mailId=mEtMailId.getText().toString();
+
+                boolean isDeleted=mMydb.deleteData(mailId);
+
+                if(isDeleted==true)
+                {
+                    Toast.makeText(MainActivity.this, "Row Deleted Successfully", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
 }

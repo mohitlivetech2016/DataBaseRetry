@@ -76,4 +76,36 @@ public class DataBase extends SQLiteOpenHelper {
         Cursor res =db.rawQuery("select * from "+mTable_Name,null);
         return res;
     }
+
+    public boolean updateMessages(String fName,String lName,String mailId,String password,String mobileNo)
+    {
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(mCol1,fName);
+        contentValues.put(mCol2,lName);
+        contentValues.put(mCol3,mailId);
+        contentValues.put(mCol4,password);
+        contentValues.put(mCol5,mobileNo);
+
+        db.update(mTable_Name,contentValues,"mailId = ?",new String[]{mailId });
+
+        return true;
+    }
+
+    public boolean deleteData(String mailId)
+    {
+        SQLiteDatabase db=this.getReadableDatabase();
+
+        int result= db.delete(mTable_Name,"maidId = ?", new String[]{mailId});
+
+        if(result >0)
+            return true;
+
+        else
+            return false;
+
+
+    }
+
 }
